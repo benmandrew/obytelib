@@ -11,15 +11,16 @@
 
 open Tools
 
-type t = V008 | V010 | V011 | V023
+type t = V008 | V010 | V011 | V023 | V029
 
-let versions = [ V008; V010; V011; V023 ]
+let versions = [ V008; V010; V011; V023; V029 ]
 
 let to_string v = match v with
   | V008 -> "008"
   | V010 -> "010"
   | V011 -> "011"
   | V023 -> "023"
+  | V029 -> "029"
 
 let to_magic v =
   "Caml1999X" ^ to_string v

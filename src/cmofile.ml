@@ -238,6 +238,7 @@ let magic_of_version v =
   | Version.V010 -> "Caml1999O010"
   | Version.V011 -> "Caml1999O011"
   | Version.V023 -> "Caml1999O023"
+  | Version.V029 -> "Caml1999O029"
 
 let magic_len = String.length (magic_of_version Version.V008)
 
@@ -459,7 +460,8 @@ let read file_name =
       | Version.V008 -> Legacy_V008.export (input_value ic : Legacy_V008.compilation_unit_v008)
       | Version.V010 -> Legacy_V010.export (input_value ic : Legacy_V010.compilation_unit_v010)
       | Version.V011 -> (input_value ic : compilation_unit)
-      | Version.V023 -> (input_value ic : compilation_unit) in
+      | Version.V023 -> (input_value ic : compilation_unit)
+      | Version.V029 -> (input_value ic : compilation_unit) in
     let index = [ { Index.section = Section.CODE; offset = unit.cu_pos; length = unit.cu_codesize } ] in
     let code = Code.read version index ic in
     close_in ic;
@@ -491,7 +493,8 @@ let write file_name { version; unit; code } =
     | Version.V008 -> Marshal.to_string (Legacy_V008.import unit) []
     | Version.V010 -> Marshal.to_string (Legacy_V010.import unit) []
     | Version.V011 -> Marshal.to_string unit []
-    | Version.V023 -> Marshal.to_string unit [] in
+    | Version.V023 -> Marshal.to_string unit []
+    | Version.V029 -> Marshal.to_string unit [] in
   let oc =
     try open_out file_name
     with _ -> fail "fail to open file %S for writting" file_name in
