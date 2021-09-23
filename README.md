@@ -2,7 +2,11 @@ OByteLib
 ========
 
 OCaml bytecode library tools.
-Usefull to read, write and evaluate OCaml bytecode files.
+Useful to read, write and evaluate OCaml bytecode files.
+
+# Warning
+
+I simply told obytelib to accept 4.12.0 OCaml bytecode files. While it seems to work I can provide no guarantees that it actually does.
 
 Example
 =======
